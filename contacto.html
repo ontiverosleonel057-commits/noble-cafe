@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu</title>
+</head>
+<link rel="stylesheet" href="estilos.css">
+<body>
+
+  <nav>
+    <div class="hamburger" id="hamburger">☰</div>
+
+    <div class="side-menu" id="side-menu">
+        <a href="index.html">principal</a>
+        <a href="menu.html">Menu</a>
+        <a href="para_llevar.html">para llevar</a>
+        <a href="novedades.html">novedades</a>
+        <a href="historia.html">historia</a>
+        <a href="contacto.html">contacto</a>
+    </div>
+</nav>
+
+<div class="frase">
+         <h1>“Aquí el café se sirve con historia."</h1>
+         </div>
+
+    
+    <div class="imagen1">
+      <img src="contacto.2.png" width="1150" heigth="100px " alt="">
+
+<div class="contacto">
+      <h1>Av. Monte Real 248, Col. Lomas del Encanto, Guadalajara, Jalisco, 44120</h1>
+
+<h2>contactanos</h2>
+<p>¿Tienes alguna duda, sugerencia o simplemente quieres compartir tu experiencia con nosotros?
+En La Taza Noble nos encanta escuchar a quienes valoran el café con carácter.<br>
+📍 Dirección:
+Av. Monte Real 248, Col. Lomas del Encanto
+Guadalajara, Jalisco, 44120<br>
+📞 Teléfono:
+33 1234 5678<br>
+📧 Correo electrónico:
+hola@latazanoble.mx
+
+</p>
+
+
+<form id="formulario">
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre"><br><br>
+
+  <label for="correo">Correo electrónico:</label><br>
+  <input type="email" id="correo" name="correo"><br><br>
+
+  <label for="mensaje">Sugerencias:</label><br>
+  <textarea id="mensaje" name="mensaje" rows="5" cols="30"></textarea><br><br>
+
+  <input type="submit" value="Enviar">
+  <input type="reset" value="Limpiar">
+</form>
+
+<p id="confirmacion" style="display:none; color: green;">Mensaje enviado</p>
+
+
+
+<script>
+  document.getElementById("formulario").addEventListener("submit", function(e) {
+    e.preventDefault(); 
+    document.getElementById("confirmacion").style.display = "block"; 
+    this.reset(); 
+  });
+</script>
+
+      <p>NOBLEHORARIOS :<br>
+Lunes a Jueves 10:00 AM – 11:00 PM<br>
+Viernes y Sábado 10:00 AM – 11:30 PM<br>
+Domingo 10:00 AM – 9:00 PM</p>
+<style>
+
+    .chat-button {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #6d4c41 0%, #4e342e 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        transition: all 0.3s;
+        z-index: 1000;
+    }
+
+    .chat-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    }
+
+    .chat-button-icon {
+        font-size: 2rem;
+    }
+
+    .notification-dot {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 15px;
+        height: 15px;
+        background: #ff5722;
+        border-radius: 50%;
+        border: 2px solid white;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+
+    .chat-window {
+        position: fixed;
+        bottom: 120px;
+        right: 30px;
+        width: 380px;
+        height: 550px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 999;
+        animation: slideUp 0.3s;
+    }
+
+    .chat-window.active {
+        display: flex;
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chat-header {
+        background: linear-gradient(135deg, #6d4c41 0%, #4e342e 100%);
+        color: white;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .chat-header-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .chat-avatar {
+        width: 50px;
+        height: 50px;
+        background: #ffecb3;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .chat-header-text h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .chat-status {
+        font-size: 0.8rem;
+        opacity: 0.9;
+    }
+
+    .online-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #4caf50;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+    .chat-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+
+    .chat-body {
+        flex: 1;
+        padding: 1.5rem;
+        overflow-y: auto;
+        background: #fafafa;
+    }
+
+    .message {
+        margin-bottom: 1rem;
+        display: flex;
+        gap: 0.5rem;
+        animation: messageIn 0.3s;
+    }
+
+    @keyframes messageIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message.bot {
+        justify-content: flex-start;
+    }
+
+    .message.user {
+        justify-content: flex-end;
+    }
+
+    .message-content {
+        max-width: 75%;
+        padding: 0.8rem 1rem;
+        border-radius: 15px;
+        line-height: 1.5;
+    }
+
+    .message.bot .message-content {
+        background: white;
+        color: #333;
+        border-bottom-left-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .message.user .message-content {
+        background: linear-gradient(135deg, #6d4c41 0%, #4e342e 100%);
+        color: white;
+        border-bottom-right-radius: 5px;
+    }
+
+    .message-time {
+        font-size: 0.7rem;
+        opacity: 0.6;
+        margin-top: 0.3rem;
+    }
+
+    .quick-suggestions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .suggestion-btn {
+        background: white;
+        border: 2px solid #6d4c41;
+        color: #6d4c41;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+    }
+
+    .suggestion-btn:hover {
+        background: #6d4c41;
+        color: white;
+    }
+
+    .chat-input {
+        padding: 1rem;
+        background: white;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .chat-input input {
+        flex: 1;
+        padding: 0.8rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-family: inherit;
+    }
+
+    .chat-input input:focus {
+        outline: none;
+        border-color: #6d4c41;
+    }
+
+    .send-button {
+        background: linear-gradient(135deg, #6d4c41 0%, #4e342e 100%);
+        color: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    .send-button:hover {
+        transform: scale(1.1);
+    }
+
+    .typing-indicator {
+        display: none;
+        padding: 0.8rem 1rem;
+        background: white;
+        border-radius: 15px;
+        width: fit-content;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .typing-indicator.active {
+        display: block;
+    }
+
+    .typing-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #999;
+        border-radius: 50%;
+        margin: 0 2px;
+        animation: typing 1.4s infinite;
+    }
+
+    .typing-dot:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .typing-dot:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 768px) {
+        .chat-window {
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            right: 0;
+            border-radius: 0;
+        }
+    }
+</style>
+
+
+<div class="chat-button" onclick="toggleChat()">
+    <span class="chat-button-icon">☕</span>
+    <div class="notification-dot" id="notificationDot"></div>
+</div>
+
+<div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+        <div class="chat-header-info">
+            <div class="chat-avatar">☕</div>
+            <div class="chat-header-text">
+                <h3>Noblecito</h3>
+                <div class="chat-status">
+                    <span class="online-dot"></span>En línea
+                </div>
+            </div>
+        </div>
+        <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+
+    <div class="chat-body" id="chatBody"></div>
+
+    <div class="chat-input">
+        <input 
+            type="text" 
+            id="userInput" 
+            placeholder="Escribe tu mensaje..."
+            onkeypress="if(event.key==='Enter') sendMessage()"
+        >
+        <button class="send-button" onclick="sendMessage()">▶</button>
+    </div>
+</div>
+
+
+<script>
+    let chatOpen = false;
+    let conversationStarted = false;
+
+    const respuestas = {
+        horario: {
+            keywords: ['horario', 'hora', 'abierto', 'abren', 'cierran', 'cuando'],
+            response: '¡Claro! 🕐 Nuestro horario es:\n\n📅 Lunes a Jueves: 10:00 AM - 11:00 PM\n📅 Viernes y Sábado: 10:00 AM - 11:30 PM\n📅 Domingo: 10:00 AM - 9:00 PM\n\n¡Te esperamos! ☕'
+        },
+        ubicacion: {
+            keywords: ['ubicacion', 'ubicación', 'donde', 'dirección', 'direccion', 'como llegar'],
+            response: '📍 Nos encontramos en:\n\nAv. Monte Real 248\nCol. Lomas del Encanto\nGuadalajara, Jalisco, 44120\n\n¡Ven a visitarnos! 🚗'
+        },
+        menu: {
+            keywords: ['menu', 'menú', 'bebidas', 'cafe', 'café', 'que venden', 'productos'],
+            response: '📋 Tenemos una gran variedad:\n\n☕ Cafés calientes y fríos\n🥐 Postres y repostería\n🥪 Snacks ligeros\n🧃 Bebidas frías\n\n¿Te gustaría una recomendación?'
+        },
+        recomendaciones: {
+            keywords: ['recomienda', 'recomendación', 'recomendacion', 'sugieres', 'mejor', 'popular', 'favorito'],
+            response: '⭐ Mis recomendaciones de hoy:\n\n1. Latte de Vainilla - ¡Un clásico!\n2. Mocha Especial - Perfecto para los amantes del chocolate\n3. Cappuccino Tradicional - Cremoso y delicioso\n\n¿Cuál te llama más la atención? 😊'
+        },
+        precios: {
+            keywords: ['precio', 'precios', 'costo', 'cuanto', 'cuánto', 'vale'],
+            response: '💰 Nuestros precios van desde:\n\n☕ Espresso: $45\n☕ Americano: $50\n☕ Cappuccino/Latte: $65\n☕ Bebidas especiales: $70-$85\n\n¡Calidad a buen precio!'
+        },
+        contacto: {
+            keywords: ['telefono', 'teléfono', 'llamar', 'contacto', 'whatsapp', 'correo'],
+            response: '📞 Puedes contactarnos al:\n\nTeléfono: 33-1234-5678\nWhatsApp: 33-9876-5432\nCorreo: contacto@latazanoble.com\n\nEstaré pendiente de tus mensajes ☕'
+        },
+        default: {
+            keywords: [],
+            response: 'No estoy seguro de haber entendido bien 🧐\n\nPuedo ayudarte con:\n- Horarios\n- Ubicación\n- Menú\n- Recomendaciones\n- Precios\n- Contacto\n\nPrueba preguntarme algo de eso ☕'
+        }
+    };
+
+    function toggleChat() {
+        const chatWindow = document.getElementById('chatWindow');
+        const notificationDot = document.getElementById('notificationDot');
+
+        chatOpen = !chatOpen;
+        if (chatOpen) {
+            chatWindow.classList.add('active');
+            notificationDot.style.display = 'none';
+
+            if (!conversationStarted) {
+                addMessage('Hola, soy Noblecito ☕\n\n¿En qué puedo ayudarte hoy?\nPuedes preguntarme por horarios, ubicación, menú, recomendaciones, precios o contacto.', 'bot');
+                conversationStarted = true;
+            }
+        } else {
+            chatWindow.classList.remove('active');
+        }
+    }
+
+    function addMessage(text, sender) {
+        const chatBody = document.getElementById('chatBody');
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', sender);
+
+        const contentDiv = document.createElement('div');
+        contentDiv.classList.add('message-content');
+        contentDiv.innerText = text;
+
+        messageDiv.appendChild(contentDiv);
+        chatBody.appendChild(messageDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function findResponse(userText) {
+        const text = userText.toLowerCase();
+
+        for (const key in respuestas) {
+            if (key === 'default') continue;
+            const entry = respuestas[key];
+            if (entry.keywords.some(word => text.includes(word))) {
+                return entry.response;
+            }
+        }
+
+        return respuestas.default.response;
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('userInput');
+        const text = input.value.trim();
+        if (text === '') return;
+
+        addMessage(text, 'user');
+        input.value = '';
+
+        setTimeout(() => {
+            const reply = findResponse(text);
+            addMessage(reply, 'bot');
+        }, 500);
+    }
+</script>
+
+<div class="imagen2">
+  <img src="contacto.1.png" width="500" height="600" alt="">
+
+</div>
+<script>
+const hamburger = document.getElementById("hamburger");
+const sideMenu = document.getElementById("side-menu");
+
+hamburger.addEventListener("click", () => {
+    sideMenu.classList.toggle("active");
+});
+</script>
